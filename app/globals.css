@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilo para ocultar a barra de rolagem */
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none; /* Esconde a barra de rolagem no Chrome, Safari e Edge */
+  }
+  
+  .scrollbar-hidden {
+    -ms-overflow-style: none; /* Esconde a barra de rolagem no IE 10+ */
+    scrollbar-width: none; /* Esconde a barra de rolagem no Firefox */
+  }
+  
