@@ -1,6 +1,9 @@
 import database from '@/lib/mongodb';
 import User from '@/models/user.model';
+import jwt from 'jsonwebtoken';
 import { NextApiRequest, NextApiResponse } from 'next';
+
+const SECRET_KEY = process.env.JWT_SECRET || 'LuizHenrique_EricaSousa_31-05-2025!';
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
@@ -20,9 +23,16 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
         return res.status(401).json({ message: 'Credenciais inválidas' });
       }
 
+      // Criar token JWT
+      const token = jwt.sign(
+        { id: user._id, username: user.username, email: user.email, role: user.role },
+        SECRET_KEY,
+      );
+
       res.status(200).json({
         message: 'Login bem-sucedido!',
-        user: user,  // Retorna todos os dados do usuário, incluindo ID, status e outros campos
+        user: user,
+        token,
       });
 
       await database.disconnect();

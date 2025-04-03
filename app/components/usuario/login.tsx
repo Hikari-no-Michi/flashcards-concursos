@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import ModalCadastro from './cadastro';
 
-const ModalLogin: React.FC<{ onClose: () => void; onLogin: () => void }> = ({ onClose, onLogin }) => {
+const ModalLogin: React.FC<{ 
+  onClose: () => void; 
+  onLogin: () => void;
+}> = ({ onClose, onLogin}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showCadastro, setShowCadastro] = useState(false); 
+  const [showCadastro, setShowCadastro] = useState(false);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (username && password) {
-      onLogin(); 
+      onLogin();
     }
   };
 
@@ -17,15 +20,21 @@ const ModalLogin: React.FC<{ onClose: () => void; onLogin: () => void }> = ({ on
     <div>
       {showCadastro ? (
         <ModalCadastro
-          onClose={() => setShowCadastro(false)} 
+          onClose={() => setShowCadastro(false)}
           onCadastro={() => {
             console.log('Cadastro realizado');
-            setShowCadastro(false); 
+            setShowCadastro(false);
           }}
         />
       ) : (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center mx-2">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center mx-2 relative">
+            <button
+              onClick={onClose}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl right-3"
+            >
+              &times;
+            </button>
             <h3 className="text-xl font-semibold mb-4">Faça o login</h3>
             <form onSubmit={handleLogin}>
               <div className="mb-3">

@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap');
 /* Estilo para ocultar a barra de rolagem */
 .scrollbar-hidden::-webkit-scrollbar {
     display: none; /* Esconde a barra de rolagem no Chrome, Safari e Edge */
@@ -11,4 +11,7 @@
     -ms-overflow-style: none; /* Esconde a barra de rolagem no IE 10+ */
     scrollbar-width: none; /* Esconde a barra de rolagem no Firefox */
   }
-  
+ 
+body{
+  background-color: #E0F2FE;
+}

@@ -47,7 +47,7 @@ const Flashcard: React.FC<FlashcardProps> = ({
   };
 
   return (
-    <div className="w-full max-w-lg mt-4 px-2 sm:px-0">
+    <div className="w-full max-w-lg lg:max-w-4xl mt-4 px-2 sm:px-0">
       <AnimacaoFlashcard animacao={animacao}>
         {conteudoDisciplina ? (
           <>

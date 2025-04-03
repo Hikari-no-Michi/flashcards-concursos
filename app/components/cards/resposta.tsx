@@ -13,12 +13,15 @@ const Resposta: React.FC<RespostaProps> = ({ conteudoDisciplina, setMostrarPergu
   };
 
   return (
+    <>
+    <h2 className='p-3'>Matéria  Disciplina</h2>
     <p
       onClick={handleClick}
       className={`border-2 border-gray-300 rounded-lg p-4 bg-white shadow-md transition-transform h-[55vh] flex justify-center items-center text-slate-700 text-sm `}
     >
       {conteudoDisciplina.resposta}
     </p>
+    </>
   );
 };
 

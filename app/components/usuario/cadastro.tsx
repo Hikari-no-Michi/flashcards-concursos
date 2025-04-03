@@ -2,7 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // Importando o useRouter
 
-const ModalCadastro: React.FC<{ onClose: () => void; onCadastro: () => void }> = ({ onClose, onCadastro }) => {
+const ModalCadastro: React.FC<{ 
+  onClose: () => void; 
+  onCadastro: () => void;
+}> = ({ onClose, onCadastro}) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,10 +32,8 @@ const ModalCadastro: React.FC<{ onClose: () => void; onCadastro: () => void }> =
       if (response.ok) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
-        onCadastro(); // Chama o onCadastro se necessário
-
-        // Redireciona para a página inicial após o cadastro bem-sucedido
-        router.push('/'); // Redireciona para a página inicial
+        onCadastro();
+        onClose();
       } else {
         console.error('Erro no cadastro:', data.message);
       }
@@ -80,11 +81,17 @@ const ModalCadastro: React.FC<{ onClose: () => void; onCadastro: () => void }> =
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center mx-2">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center mx-2 relative">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-2xl"
+        >
+          &times;
+        </button>
         <h3 className="text-xl font-semibold mb-4">Criar Conta</h3>
         <form onSubmit={handleCadastro}>
           <div className="mb-3 flex items-center">
-            <div className="bg-gray-200 p-2 rounded-l-lg text-xl">@</div>
+            <div className="bg-gray-200 p-2 rounded-l-lg text-xl text-slate-800">@</div>
             <input
               type="text"
               className="w-full p-2 border rounded-r-lg"
